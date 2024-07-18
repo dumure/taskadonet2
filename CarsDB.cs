@@ -17,8 +17,8 @@ USE [CarsDB]
 
 CREATE TABLE [Cars] (
     [Id]       INT           IDENTITY (1, 1),
-    [Mark]    NVARCHAR (32) NOT NULL,
-    [Model] NVARCHAR (32) NOT NULL,
+    [Mark]     NVARCHAR (32) NOT NULL,
+    [Model]    NVARCHAR (32) NOT NULL,
 );
 */
 
