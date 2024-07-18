@@ -9,6 +9,19 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 
+/* ! Нужно создать базу данных !
+
+CREATE DATABASE [CarsDB]
+
+USE [CarsDB]
+
+CREATE TABLE [Cars] (
+    [Id]       INT           IDENTITY (1, 1),
+    [Mark]    NVARCHAR (32) NOT NULL,
+    [Model] NVARCHAR (32) NOT NULL,
+);
+*/
+
 namespace task_ado_2
 {
     internal class CarsDB
