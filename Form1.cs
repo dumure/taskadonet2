@@ -9,7 +9,7 @@ namespace task_ado_2
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(textBox1.Text))
+            if (!string.IsNullOrEmpty(textBox1.Text))
             {
                 var carsDB = new CarsDB();
                 var cars = carsDB.GetCars();
@@ -18,7 +18,7 @@ namespace task_ado_2
                 {
                     foreach (var car in cars)
                     {
-                        if (car.Mark.Contains(textBox1.Text))
+                        if (car.Mark.ToLower().Contains(textBox1.Text.ToLower()))
                         {
                             result.Add(car);
                         }
@@ -28,7 +28,7 @@ namespace task_ado_2
                 {
                     foreach (var car in cars)
                     {
-                        if (car.Model.Contains(textBox1.Text))
+                        if (car.Model.ToLower().Contains(textBox1.Text.ToLower()))
                         {
                             result.Add(car);
                         }

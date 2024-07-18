@@ -14,6 +14,7 @@ namespace task_ado_2
     internal class CarsDB
     {
         private List<Car> _cars;
+        private string _connectionString;
         public CarsDB()
         {
             _cars = new List<Car>();
@@ -23,8 +24,8 @@ namespace task_ado_2
 
             IConfiguration configuration = builder.Build();
 
-            string connectionString = configuration.GetConnectionString("DefaultConnection");
-            using (SqlConnection connection = new(connectionString))
+            _connectionString = configuration.GetConnectionString("DefaultConnection");
+            using (SqlConnection connection = new(_connectionString))
             {
                 connection.Open();
                 SqlCommand cmd = new(
@@ -44,15 +45,13 @@ namespace task_ado_2
         }
         public void AddCar(Car car)
         {
-            string connectionString = @"Server=(localdb)\MSSQLLocalDB;Database=Library;Integrated Security=SSPI;";
-            using (SqlConnection connection = new(connectionString))
+            using (SqlConnection connection = new(_connectionString))
             {
                 connection.Open();
                 SqlCommand cmd = new(
-                    @$"USE [UsersDB]
-                      GO
-                      INSERT INTO Users(Mark, Model)
-                      VALUES(@mark, @model)"
+                    @"USE CarsDB
+                    INSERT INTO Cars(Mark, Model)
+                    VALUES(@mark, @model)"
                     , connection);
                 cmd.Parameters.Add("@mark", System.Data.SqlDbType.NVarChar, 32).Value = car.Mark;
                 cmd.Parameters.Add("@model", System.Data.SqlDbType.NVarChar, 32).Value = car.Model;
